@@ -1,6 +1,7 @@
 ﻿#https://developers.cloudflare.com/api/operations/zones-get
 function Get-CFZone {
     [CmdletBinding()]
+    [OutputType('Cloudflare.Zone')]
     param(
         [Parameter()]
         [string]$ZoneName
@@ -23,6 +24,7 @@ function Get-CFZone {
             Uri        = '{0}/zones{1}' -f $Script:cfBaseApiUrl, $Query
         }
         $Result = Invoke-CFRestMethod @Splat
+        $Result.result | ForEach-Object { $_.PSobject.TypeNames.Insert(0, 'Cloudflare.Zone') }
         $Result.result
     }
     end {}

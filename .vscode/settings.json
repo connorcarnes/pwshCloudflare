@@ -5,5 +5,15 @@
   "powershell.scriptAnalysis.settingsPath": "PSScriptAnalyzerSettings.psd1",
   // specifies the PowerShell coding style used in this project (https://github.com/PoshCode/PowerShellPracticeAndStyle/issues/81)
   "powershell.codeFormatting.preset": "Stroustrup",
-  "powershell.scriptAnalysis.enable": true
+  "powershell.scriptAnalysis.enable": true,
+  "xml.fileAssociations": [
+    {
+      "systemId": "https://raw.githubusercontent.com/PowerShell/PowerShell/master/src/Schemas/Format.xsd",
+      "pattern": "**/*.Format.ps1xml"
+    },
+    {
+      "systemId": "https://raw.githubusercontent.com/PowerShell/PowerShell/master/src/Schemas/Types.xsd",
+      "pattern": "**/*.Types.ps1xml"
+    }
+  ]
 }

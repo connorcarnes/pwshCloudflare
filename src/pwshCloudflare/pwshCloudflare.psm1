@@ -4,7 +4,6 @@
 . $PSScriptRoot\Imports.ps1
 
 # discover all ps1 file(s) in Public and Private paths
-
 $itemSplat = @{
     Filter      = '*.ps1'
     Recurse     = $true
@@ -16,7 +15,7 @@ try {
 }
 catch {
     Write-Error $_
-    throw "Unable to get get file information from Public & Private src."
+    throw 'Unable to get get file information from Public & Private src.'
 }
 
 # dot source all .ps1 file(s) found
@@ -33,10 +32,16 @@ foreach ($file in @($public + $private)) {
 # export all public functions
 Export-ModuleMember -Function $public.Basename
 
+# Load all types
+$Types = Get-ChildItem -Path "$PSScriptRoot\Types" -Filter '*.ps1xml'
+foreach ($Type in $Types) {
+    Update-TypeData -PrependPath $Type.FullName
+}
+
 $Path = [Environment]::GetFolderPath([Environment+SpecialFolder]::UserProfile)
 $cfFolder = "$Path\.pwshCloudflare"
-$Script:cfConfigPath   = "$cfFolder\config.xml"
-$Script:cfBaseApiUrl   = 'https://api.cloudflare.com/client/v4'
+$Script:cfConfigPath = "$cfFolder\config.xml"
+$Script:cfBaseApiUrl = 'https://api.cloudflare.com/client/v4'
 $Script:cfApiSchemaUrl = 'https://developers.cloudflare.com/schema'
 
 if (-not (Test-Path $cfFolder)) {
@@ -53,5 +58,5 @@ if (Test-Path $cfConfigPath) {
 }
 
 if (-not $Script:cfSession) {
-    Write-Warning "Cloudflare session not found. Use Set-CloudflareSession to create a session."
+    Write-Warning 'Cloudflare session not found. Use Set-CloudflareSession to create a session.'
 }
