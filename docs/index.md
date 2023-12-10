@@ -33,8 +33,3 @@
 # command showing how to use your project
 
 ```
-
-## Author
-
-connorcarnes
-
