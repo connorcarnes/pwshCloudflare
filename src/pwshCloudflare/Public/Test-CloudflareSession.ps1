@@ -13,6 +13,14 @@
     Specifies the API key associated with the Cloudflare account. This parameter is only required when using the 'NewSession' parameter set.
 .PARAMETER ApiToken
     Specifies the API token associated with the Cloudflare account. This parameter is only required when using the 'NewSession' parameter set.
+.EXAMPLE
+    $Splat = @{
+        Email        = "user@example.com"
+        ApiKey       = "API_KEY"
+        ApiToken     = "API_TOKEN"
+    }
+    Test-CloudflareSession @Splat
+    Configures a new [Microsoft.PowerShell.Commands.WebRequestSession] and tests authentication.
 .LINK
     https://developers.cloudflare.com/fundamentals/api/
 #>
