@@ -4,7 +4,9 @@ function Get-CFZone {
     [OutputType('Cloudflare.Zone')]
     param(
         [Parameter()]
-        [string]$ZoneName
+        [string]$ZoneName,
+        [Parameter()]
+        [string]$ZoneID
     )
     begin {
         Write-Verbose "$($MyInvocation.MyCommand.Name) :: BEGIN :: $(Get-Date)"
@@ -16,6 +18,9 @@ function Get-CFZone {
     process {
         if ($ZoneName) {
             $Query = "?name=$ZoneName"
+        }
+        if ($ZoneID) {
+            $Query = "?id=$ZoneID"
         }
 
         $Splat = @{
