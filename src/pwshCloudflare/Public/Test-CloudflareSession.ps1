@@ -1,4 +1,22 @@
-﻿function Test-CloudflareSession {
+﻿<#
+.SYNOPSIS
+    Tests the Cloudflare session by verifying the authentication credentials.
+.DESCRIPTION
+     Tests the Cloudflare session by verifying the authentication credentials.
+     Token auth is tested using the https://api.cloudflare.com/client/v4/user/tokens/verify endpoint.
+     Legacy auth is tested using the https://api.cloudflare.com/client/v4/user endpoint.
+.PARAMETER Session
+    Specifies the WebRequestSession object to be used for the Cloudflare session. This parameter is only required when using the 'ImportedSession' parameter set.
+.PARAMETER Email
+    Specifies the email associated with the Cloudflare account. This parameter is only required when using the 'NewSession' parameter set.
+.PARAMETER ApiKey
+    Specifies the API key associated with the Cloudflare account. This parameter is only required when using the 'NewSession' parameter set.
+.PARAMETER ApiToken
+    Specifies the API token associated with the Cloudflare account. This parameter is only required when using the 'NewSession' parameter set.
+.LINK
+    https://developers.cloudflare.com/fundamentals/api/
+#>
+function Test-CloudflareSession {
     [CmdletBinding()]
     param(
         [Parameter(ParameterSetName = 'ImportedSession', Mandatory = $false)]

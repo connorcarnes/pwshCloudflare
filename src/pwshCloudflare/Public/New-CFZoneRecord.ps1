@@ -1,4 +1,33 @@
-﻿# https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-list-dns-records
+﻿<#
+.SYNOPSIS
+    Creates a new DNS record for a Cloudflare zone.
+.DESCRIPTION
+    The New-CFZoneRecord function creates a new DNS record for a Cloudflare zone. It supports creating records by either ZoneId or ZoneName. The function requires the Content, Name, Type, TTL, and Proxied parameters to be specified. Additional parameters are required for specific record types (MX, SRV, and URI).
+.PARAMETER ZoneId
+    Specifies the ID of the Cloudflare zone where the DNS record will be created. This parameter is mandatory when using the ZoneId parameter set.
+.PARAMETER ZoneName
+    Specifies the name of the Cloudflare zone where the DNS record will be created. This parameter is mandatory when using the ZoneName parameter set.
+.PARAMETER Content
+    Specifies the content of the DNS record.
+.PARAMETER Name
+    Specifies the name of the DNS record.
+.PARAMETER Type
+    Specifies the type of the DNS record. Valid values are 'A', 'AAAA', 'CNAME', 'TXT', and 'MX'.
+.PARAMETER TTL
+    Specifies the Time To Live (TTL) of the DNS record in seconds. Setting it to 1 means 'automatic'. The value must be between 60 and 86400, with the minimum reduced to 30 for Enterprise zones.
+.PARAMETER Proxied
+    Specifies whether the record is proxied through Cloudflare (orange cloud).
+.PARAMETER Priority
+    Required for MX, SRV, and URI records; unused by other record types. Records with lower priorities are preferred.
+.EXAMPLE
+    New-CFZoneRecord -ZoneId '1234567890abcdef' -Content '192.168.1.1' -Name 'example.com' -Type 'A' -TTL 3600 -Proxied $true
+    Creates a new 'A' record with the specified parameters in the Cloudflare zone with the ID '1234567890abcdef'.
+.EXAMPLE
+    New-CFZoneRecord -ZoneName 'example.com' -Content 'mail.example.com' -Name 'example.com' -Type 'MX' -TTL 3600 -Proxied $false -Priority 10
+    Creates a new 'MX' record with the specified parameters in the Cloudflare zone with the name 'example.com'.
+.LINK
+    https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-create-dns-record
+#>
 function New-CFZoneRecord {
     [CmdletBinding()]
     param(

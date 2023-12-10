@@ -1,4 +1,23 @@
-﻿# https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-list-dns-records
+﻿<#
+.SYNOPSIS
+    Retrieves DNS records for a Cloudflare zone.
+.DESCRIPTION
+    The Get-CFZoneRecord function retrieves DNS records for a Cloudflare zone. It can be used to get all DNS records for a specific zone by providing either the ZoneId or ZoneName parameter.
+.PARAMETER ZoneId
+    Specifies the ID of the Cloudflare zone for which to retrieve DNS records. This parameter is mandatory when using the ZoneId parameter set.
+.PARAMETER ZoneName
+    Specifies the name of the Cloudflare zone for which to retrieve DNS records. This parameter is mandatory when using the ZoneName parameter set.
+.EXAMPLE
+    Get-CFZoneRecord -ZoneId "1234567890"
+    Retrieves all DNS records for the Cloudflare zone with the specified ZoneId.
+.EXAMPLE
+    Get-CFZoneRecord -ZoneName "example.com"
+    Retrieves all DNS records for the Cloudflare zone with the specified ZoneName.
+.INPUTS
+    None.
+.LINK
+    https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-list-dns-records
+#>
 function Get-CFZoneRecord {
     [CmdletBinding()]
     param(
