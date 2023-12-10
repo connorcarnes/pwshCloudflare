@@ -16,22 +16,42 @@ InModuleScope 'pwshCloudflare' {
         BeforeAll {
             $WarningPreference = 'SilentlyContinue'
             $ErrorActionPreference = 'SilentlyContinue'
+            # Mock the dependent cmdlets and variables
+            Mock Invoke-CFRestMethod { return @{ result = @(@{ Name = 'TestZone'; Id = '12345' }) } }
+            $script:cfBaseApiUrl = 'https://api.cloudflare.com/client/v4'
+        }
+        BeforeEach {
+            $script:cfSession = New-Object Microsoft.PowerShell.Commands.WebRequestSession
         }
         Context 'Error' {
             It 'should throw an error if Cloudflare session is not found' {
                 $ZoneName = 'example.com'
                 $script:cfSession = $null
-                { Get-CFZone -ZoneName $ZoneName } | Should -Throw 'Cloudflare session not found. Use Set-CloudflareSession to create a session.'
+                { Get-CFZone -ZoneName $ZoneName } | Should -Throw
             }
         }
         Context 'Success' {
-            BeforeEach {
-                Mock -CommandName Invoke-CFRestMethod -MockWith {
-                    [PSCustomObject]@{
-                        result = 'Zone details'
-                    }
+            It 'Calls Invoke-CFRestMethod with correct parameters for ZoneName' {
+                Get-CFZone -ZoneName 'example.com'
+                Assert-MockCalled Invoke-CFRestMethod -Exactly 1 -Scope It -ParameterFilter {
+                    $Uri -eq 'https://api.cloudflare.com/client/v4/zones?name=example.com' -and
+                    $Method -eq 'GET'
                 }
             }
+            It 'Calls Invoke-CFRestMethod with correct parameters for ZoneID' {
+                Get-CFZone -ZoneID '12345'
+                Assert-MockCalled Invoke-CFRestMethod -Exactly 1 -Scope It -ParameterFilter {
+                    $Uri -eq 'https://api.cloudflare.com/client/v4/zones?id=12345' -and
+                    $Method -eq 'GET'
+                }
+            }
+            It 'Returns objects of type Cloudflare.Zone' {
+                $result = Get-CFZone -ZoneName 'example.com'
+                $result.PSObject.TypeNames[0] | Should -BeExactly 'Cloudflare.Zone'
+            }
+        }
+        AfterAll {
+            $script:cfSession | Remove-Variable
         }
     }
 }

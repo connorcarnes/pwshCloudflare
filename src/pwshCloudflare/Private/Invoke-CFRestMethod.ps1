@@ -12,5 +12,6 @@ function Invoke-CFRestMethod {
         [Parameter()]
         [object]$Body
     )
+    #TRY RETURN result.result CATCH throw OBJ
     Invoke-RestMethod @PSBoundParameters
 }
