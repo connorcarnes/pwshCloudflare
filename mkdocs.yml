@@ -8,14 +8,14 @@
 # https://squidfunk.github.io/mkdocs-material/creating-your-site/
 # mkdocs.yml
 
-site_name: pwshCloudflare
-# site_url:
-# repo_url:
+site_name: pwshCloudflare - PowerShell module for interacting with the Cloudflare API.
+site_url: https://pwshcloudflare.pages.dev
+repo_url: https://github.com/connorcarnes/pwshCloudflare
 # repo_name:
 # edit_uri: edit/main/docs/
 # edit_uri_template:
 site_description: PowerShell module for interacting with the Cloudflare API # meta tag to the generated HTML header
-site_author: connorcarnes # meta tag to the generated HTML header
+site_author: Connor Carnes # meta tag to the generated HTML header
 # copyright:
 # remote_branch:
 # remote_name:
@@ -24,18 +24,18 @@ site_author: connorcarnes # meta tag to the generated HTML header
 # extra_css:
 # extra_javascript:
 # markdown_extensions:
-  # Python Markdown
-  # - admonition
-  # - toc:
-  #     permalink: true
-  # code highlighting
-  # - pymdownx.highlight:
-  #     use_pygments: true
-  # - pymdownx.highlight:
-  #     anchor_linenums: true
-  # - pymdownx.inlinehilite
-  # - pymdownx.snippets
-  # - pymdownx.superfences
+# Python Markdown
+# - admonition
+# - toc:
+#     permalink: true
+# code highlighting
+# - pymdownx.highlight:
+#     use_pygments: true
+# - pymdownx.highlight:
+#     anchor_linenums: true
+# - pymdownx.inlinehilite
+# - pymdownx.snippets
+# - pymdownx.superfences
 
 # extra_templates:
 # extra:
@@ -65,17 +65,16 @@ theme:
   #       icon: material/brightness-7
   #       name: Switch to dark mode
 
-    # # Palette toggle for dark mode
-    # - media: "(prefers-color-scheme: dark)"
-    #   scheme: slate
-    #   primary: indigo
-    #   accent: pink
-    #   toggle:
-    #     icon: material/brightness-4
-    #     name: Switch to light mode
+  # # Palette toggle for dark mode
+  # - media: "(prefers-color-scheme: dark)"
+  #   scheme: slate
+  #   primary: indigo
+  #   accent: pink
+  #   toggle:
+  #     icon: material/brightness-4
+  #     name: Switch to light mode
 nav:
   - Home: index.md
   - Change Log: CHANGELOG.md
   # - Functions:
   #   - Function1: functions/function1.md
-
