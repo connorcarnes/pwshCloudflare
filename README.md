@@ -39,7 +39,7 @@ API token and API Key authentication are supported. See [Get Started - Cloudflar
 
 `Set-CloudflareSession` handles authentication by creating a `[Microsoft.PowerShell.Commands.WebRequestSession]` object with the appropriate headers. The object is saved to `$Script:cfSession` and used to make subsequent API calls.
 
-If you wish you can store the configuration in a file with the `-SaveToFile` parameter. You can also have the configuration loaded on module import with the `-LoadOnImport` parameter. **Your credentials will be stored in the file in plaintext**. See examples below.
+You can store the configuration in a file with the `-SaveToFile` parameter. If you want the configuration to load on module import, use the `-LoadOnImport` parameter. **Your credentials will be stored in the file in plaintext**. See examples below.
 
 ### Quick start
 
