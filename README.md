@@ -2,28 +2,23 @@
 
 ## Synopsis
 
-<!-- Enter a synopsis -->
+PowerShell module for interacting with the Cloudflare API.
 
 ## Description
 
-<!-- Enter a description -->
-
-## Why
-
-<!-- Short reason you created the project -->
+TBD
 
 ## Getting Started
 
-### Prerequisites
-
-<!-- list any prerequisites -->
-
 ### Installation
 
-```powershell
-# how to install pwshCloudflare
+Will be published to PSGallery in the future. For now clone this repo and import the module.
 
-```
+![Installation](media/install.png)
+
+### Authentication
+
+TBD
 
 ### Quick start
 
