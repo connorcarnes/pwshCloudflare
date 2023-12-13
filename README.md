@@ -1,20 +1,5 @@
 # pwshCloudflare
 
-- [pwshCloudflare](#pwshcloudflare)
-  - [Synopsis](#synopsis)
-  - [Description](#description)
-  - [Functions](#functions)
-  - [Why](#why)
-  - [Getting Started](#getting-started)
-    - [Installation](#installation)
-    - [Authentication](#authentication)
-    - [Quick start](#quick-start)
-      - [Authenticate for the current PowerShell session](#authenticate-for-the-current-powershell-session)
-      - [Save configuration to a file and have it load on module import](#save-configuration-to-a-file-and-have-it-load-on-module-import)
-      - [List all zones](#list-all-zones)
-      - [Get DNS records by zone name](#get-dns-records-by-zone-name)
-      - [Get DNS records by zone id](#get-dns-records-by-zone-id)
-
 ## Synopsis
 
 PowerShell module for interacting with the Cloudflare API.
