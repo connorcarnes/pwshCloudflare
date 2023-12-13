@@ -37,7 +37,7 @@ Import-Module '.pwshCloudflare/src/pwshCloudflare/pwshCloudflare.psd1'
 
 `Set-CloudflareSession` creates a `[Microsoft.PowerShell.Commands.WebRequestSession]` object with the appropriate headers, saves it to `$Script:cfSession`, and uses it make subsequent API calls. By default `Set-CloudflareSession` only configures authentication for the current session. Use the `-SaveToFile` and `-LoadOnImport` parameters to save your configuration and have it load on module import. **Your credentials will be stored in plaintext**. Examples are included in the [Quickstart section below](#quick-start).
 
-API token and API Key authentication are supported. See [Get Started - Cloudflare Fundamentals](https://developers.cloudflare.com/fundamentals/api/get-started/) for details.
+You can use API token authentication, API key authentication, or both. See [Get Started - Cloudflare Fundamentals](https://developers.cloudflare.com/fundamentals/api/get-started/) for details. `Set-CloudflareSession` will validate the provided credentials with `Test-CloudflareSession`.
 
 ### Quick start
 
