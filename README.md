@@ -1,5 +1,20 @@
 # pwshCloudflare
 
+- [pwshCloudflare](#pwshcloudflare)
+  - [Synopsis](#synopsis)
+  - [Description](#description)
+  - [Functions](#functions)
+  - [Why](#why)
+  - [Getting Started](#getting-started)
+    - [Installation](#installation)
+    - [Authentication](#authentication)
+    - [Quick start](#quick-start)
+      - [Authenticate for the current PowerShell session](#authenticate-for-the-current-powershell-session)
+      - [Save configuration to a file and have it load on module import](#save-configuration-to-a-file-and-have-it-load-on-module-import)
+      - [List all zones](#list-all-zones)
+      - [Get DNS records by zone name](#get-dns-records-by-zone-name)
+      - [Get DNS records by zone id](#get-dns-records-by-zone-id)
+
 ## Synopsis
 
 PowerShell module for interacting with the Cloudflare API.
@@ -35,11 +50,9 @@ Import-Module '.pwshCloudflare/src/pwshCloudflare/pwshCloudflare.psd1'
 
 ### Authentication
 
+`Set-CloudflareSession` creates a `[Microsoft.PowerShell.Commands.WebRequestSession]` object with the appropriate headers, saves it to `$Script:cfSession`, and uses it make subsequent API calls. By default `Set-CloudflareSession` only configures authentication for the current session. Use the `-SaveToFile` and `-LoadOnImport` parameters to save your configuration and have it load on module import. **Your credentials will be stored in plaintext**. Examples are included in the [Quickstart section below](#quick-start).
+
 API token and API Key authentication are supported. See [Get Started - Cloudflare Fundamentals](https://developers.cloudflare.com/fundamentals/api/get-started/) for details.
-
-`Set-CloudflareSession` handles authentication by creating a `[Microsoft.PowerShell.Commands.WebRequestSession]` object with the appropriate headers. The object is saved to `$Script:cfSession` and used to make subsequent API calls.
-
-You can store the configuration in a file with the `-SaveToFile` parameter. If you want the configuration to load on module import, use the `-LoadOnImport` parameter. **Your credentials will be stored in the file in plaintext**. See examples below.
 
 ### Quick start
 
@@ -57,7 +70,7 @@ Set-CloudflareSession @Splat
 #### Save configuration to a file and have it load on module import
 
 ```PowerShell
-# Your credentials will be saved to the file in plaintext. Default config file location:
+# Your credentials will be stored in plaintext. Default config file location:
 # $Folder = [Environment]::GetFolderPath([Environment+SpecialFolder]::UserProfile)
 # $FilePath = "$Folder\.pwshCloudflare\config.xml"
 $Splat = @{
