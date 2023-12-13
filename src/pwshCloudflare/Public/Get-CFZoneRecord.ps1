@@ -43,6 +43,7 @@ function Get-CFZoneRecord {
             Uri        = '{0}/zones/{1}/dns_records' -f $Script:cfBaseApiUrl, $ZoneId
         }
         $Result = Invoke-CFRestMethod @Splat
+        $Result.result | ForEach-Object { $_.PSobject.TypeNames.Insert(0, 'Cloudflare.ZoneRecord') }
         $Result.result
     }
     end {}
