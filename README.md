@@ -6,25 +6,84 @@ PowerShell module for interacting with the Cloudflare API.
 
 ## Description
 
-TBD
+PowerShell module for interacting with the Cloudflare API.
+
+## Functions
+
+| Function            | ApiOperation                                                                                                   |
+| ------------------- | -------------------------------------------------------------------------------------------------------------- |
+| Get-CFZone          | [List Zones](https://developers.cloudflare.com/api/operations/zones-get)                                       |
+| Get-CFZoneRecord    | [List DNS Records](https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-list-dns-records)   |
+| New-CFZoneRecord    | [Create DNS Record](https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-create-dns-record) |
+| Remove-CFZoneRecord | [Delete DNS Record](https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-delete-dns-record) |
+| Set-CFZoneRecord    | [Patch DNS Record](https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-patch-dns-record)   |
+
+## Why
+
+The existing Cloudflare modules in the PSGallery are limited in scope. This project aims to support as many [Cloudflare products](https://developers.cloudflare.com/products/) as possible including R2, D1, Pages, Workers, Workers KV, Workers AI, Images, Stream, Access, Tunnel, Durable Objects, Queues, etc.
 
 ## Getting Started
 
 ### Installation
 
-Will be published to PSGallery in the future. For now clone this repo and import the module.
+pwshCloudflare will be published to PSGallery in the future. For now clone this repo and import the module.
 
-![Installation](media/install.png)
+```PowerShell
+git clone https://github.com/connorcarnes/pwshCloudflare
+Import-Module '.pwshCloudflare/src/pwshCloudflare/pwshCloudflare.psd1'
+```
 
 ### Authentication
 
-TBD
+`Set-CloudflareSession` creates a `[Microsoft.PowerShell.Commands.WebRequestSession]` object with the appropriate headers, saves it to `$Script:cfSession`, and uses it make subsequent API calls. By default `Set-CloudflareSession` only configures authentication for the current session. Use the `-SaveToFile` and `-LoadOnImport` parameters to save your configuration and have it load on module import. **Your credentials will be stored in plaintext**. Examples are included in the [Quickstart section below](#quick-start).
+
+You can use API token authentication, API key authentication, or both. See [Get Started - Cloudflare Fundamentals](https://developers.cloudflare.com/fundamentals/api/get-started/) for details. `Set-CloudflareSession` will validate the provided credentials with `Test-CloudflareSession`.
 
 ### Quick start
 
-#### Example1
+#### Authenticate for the current PowerShell session
+
+```PowerShell
+$Splat = @{
+    Email    = "user@example.com"
+    ApiKey   = "API_KEY"
+    ApiToken = "API_TOKEN"
+}
+Set-CloudflareSession @Splat
+```
+
+#### Save configuration to a file and have it load on module import
+
+```PowerShell
+# Your credentials will be stored in plaintext. Default config file location:
+# $Folder = [Environment]::GetFolderPath([Environment+SpecialFolder]::UserProfile)
+# $FilePath = "$Folder\.pwshCloudflare\config.xml"
+$Splat = @{
+    Email        = "user@example.com"
+    ApiKey       = "API_KEY"
+    ApiToken     = "API_TOKEN"
+    SaveToFile   = $true
+    LoadOnImport = $true
+}
+Set-CloudflareSession @Splat
+```
+
+#### List all zones
 
 ```powershell
-# command showing how to use your project
+Get-CfZone
+```
 
+#### Get DNS records by zone name
+
+```PowerShell
+Get-CFZoneRecord -ZoneName 'example.com'
+```
+
+#### Get DNS records by zone id
+
+```PowerShell
+$ZoneName = 'example.com'
+$Zone = Get-CfZone | Where-Object {$_.Name -eq $ZoneName}
+Get-CFZoneRecord -ZoneId $Zone.id
 ```

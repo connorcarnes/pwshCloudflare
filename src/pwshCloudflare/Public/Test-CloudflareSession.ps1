@@ -67,7 +67,7 @@ function Test-CloudflareSession {
 
         $NoToken = [string]::IsNullOrEmpty($Session.Headers['Authorization'])
         if ($NoToken) {
-            Write-Verbose 'Skipping token auth test. No API token provided.'
+            Write-Verbose 'No API token provided, skipping token auth test.'
         }
         else {
             $TokenAuthTest = Invoke-RestMethod -Uri "$Script:cfBaseApiUrl/user/tokens/verify"  -WebSession $Session
@@ -80,7 +80,7 @@ function Test-CloudflareSession {
         $NoEmail = [string]::IsNullOrEmpty($Session.Headers['X-Auth-Email'])
         $NoApiKey = [string]::IsNullOrEmpty($Session.Headers['X-Auth-Key'])
         if ($NoEmail -and $NoApiKey) {
-            Write-Verbose 'Skipping legacy auth test. No email or API key provided.'
+            Write-Verbose 'No email or API key provided, skipping legacy auth test. '
         }
         elseif ($NoEmail -or $NoApiKey) {
             Write-Warning 'Only one of Email or API Key provided. Both are required for legacy auth (aka global api key auth).'
