@@ -28,6 +28,17 @@ function Invoke-CFRestMethod {
         [Parameter()]
         [object]$Body
     )
-    #TRY RETURN result.result CATCH throw OBJ
-    Invoke-RestMethod @PSBoundParameters
+    try {
+        Invoke-RestMethod @PSBoundParameters
+    }
+    catch {
+        $ApiError = $_.ErrorDetails.Message | ConvertFrom-Json
+        if ($ApiError.errors.count -eq 1) {
+            throw "Cloudflare API returned error code $($ApiError.errors.code) with message: $($ApiError.errors.message)"
+        }
+        else {
+            # Cloudflare API returned multiple errors. Update function to handle this scenario.
+            throw $_
+        }
+    }
 }

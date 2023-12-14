@@ -62,6 +62,7 @@
     # Type files (.ps1xml) to be loaded when importing this module
     TypesToProcess    = @(
         'Types\Cloudflare.Zone.Types.ps1xml'
+        'Types\Cloudflare.ZoneRecord.Types.ps1xml'
     )
 
     # Format files (.ps1xml) to be loaded when importing this module
