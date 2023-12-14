@@ -19,3 +19,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated \*CFZoneRecord functions to use Cloudflare.ZoneRecord type
 - Added unit tests for Get-CFZoneRecord and New-CFZoneRecord
 - Added docs
+
+## [0.1.1]
+
+- Update names of GitHub Actions Workflows
+- Add tests for Remove-CFZoneRecord, Set-CFZoneRecord, Set-CloudflareSession, Test-CloudflareSession
+- Update priority parameter in Set-CFZoneRecord
+- Remove Update-TypeData from psm1

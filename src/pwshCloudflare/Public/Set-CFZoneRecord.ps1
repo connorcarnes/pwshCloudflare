@@ -47,24 +47,10 @@ function Set-CFZoneRecord {
         #[ValidateRange(60, 86400)]
         [int]$TTL,
         [Parameter(HelpMessage = 'Whether the record is proxied through Cloudflare (orange cloud)')]
-        [bool]$Proxied
+        [bool]$Proxied,
+        [Parameter()]
+        [int]$Priority
     )
-    DynamicParam {
-        if ($Type -in 'MX', 'SRV', 'URI') {
-            # https://powershellmagazine.com/2014/05/29/dynamic-parameters-in-powershell/
-            # https://adamtheautomator.com/powershell-parameter-validation/
-            $priorityAttribute = New-Object System.Management.Automation.ParameterAttribute
-            $priorityAttribute.HelpMessage = 'Required for MX, SRV and URI records; unused by other record types. Records with lower priorities are preferred.'
-            $priorityAttribute.Mandatory = $true
-            $attributeCollection = New-Object System.Collections.ObjectModel.Collection[System.Attribute]
-            $attributeCollection.Add($priorityAttribute)
-            $attributeCollection.Add((New-Object System.Management.Automation.ValidateRangeAttribute(0, 65535)))
-            $priorityParam = New-Object System.Management.Automation.RuntimeDefinedParameter('Priority', [int], $attributeCollection)
-            $paramDictionary = New-Object System.Management.Automation.RuntimeDefinedParameterDictionary
-            $paramDictionary.Add('Priority', $priorityParam)
-            return $paramDictionary
-        }
-    }
     begin {
         Write-Verbose "$($MyInvocation.MyCommand.Name) :: BEGIN :: $(Get-Date)"
         Write-Verbose "ParameterSetName: $($PSCmdlet.ParameterSetName)"
