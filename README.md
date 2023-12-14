@@ -1,5 +1,14 @@
 # pwshCloudflare
 
+[![Minimum Supported PowerShell Version](https://img.shields.io/badge/PowerShell-5.1+-purple.svg)](https://github.com/PowerShell/PowerShell) ![Cross Platform](https://img.shields.io/badge/platform-windows%20%7C%20macos%20%7C%20linux-lightgrey) [![License][license-badge]](LICENSE)
+
+[license-badge]: https://img.shields.io/github/license/connorcarnes/pwshCloudflare
+
+| Branch | Windows - PowerShell | Windows - pwsh | Linux | MacOS |
+| --- | --- | --- | --- | --- |
+| main   | ![Build Status Windows PowerShell Main](https://github.com/connorcarnes/pwshCloudflare/actions/workflows/wf_WindowsPowerShell.yml/badge.svg?branch=main) | ![Build Status Windows pwsh Main](https://github.com/connorcarnes/pwshCloudflare/actions/workflows/wf_Windows.yml/badge.svg?branch=main) | ![Build Status Linux Main](https://github.com/connorcarnes/pwshCloudflare/actions/workflows/wf_Linux.yml/badge.svg?branch=main) | ![Build Status MacOS dev](https://github.com/connorcarnes/pwshCloudflare/actions/workflows/wf_MacOS.yml/badge.svg?branch=main) |
+| dev    | ![Build Status Windows PowerShell dev](https://github.com/connorcarnes/pwshCloudflare/actions/workflows/wf_WindowsPowerShell.yml/badge.svg?branch=dev)   | ![Build Status Windows pwsh dev](https://github.com/connorcarnes/pwshCloudflare/actions/workflows/wf_Windows.yml/badge.svg?branch=dev)   | ![Build Status Linux dev](https://github.com/connorcarnes/pwshCloudflare/actions/workflows/wf_Linux.yml/badge.svg?branch=dev)   | ![Build Status MacOS dev](https://github.com/connorcarnes/pwshCloudflare/actions/workflows/wf_MacOS.yml/badge.svg?branch=dev)  |
+
 ## Synopsis
 
 PowerShell module for interacting with the Cloudflare API.
