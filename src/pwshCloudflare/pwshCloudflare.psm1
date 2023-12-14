@@ -32,12 +32,6 @@ foreach ($file in @($public + $private)) {
 # export all public functions
 Export-ModuleMember -Function $public.Basename
 
-# Load all types
-$Types = Get-ChildItem -Path "$PSScriptRoot\Types" -Filter '*.ps1xml'
-foreach ($Type in $Types) {
-    Update-TypeData -PrependPath $Type.FullName
-}
-
 $Path = [Environment]::GetFolderPath([Environment+SpecialFolder]::UserProfile)
 $cfFolder = "$Path\.pwshCloudflare"
 $Script:cfConfigPath = "$cfFolder\config.xml"
