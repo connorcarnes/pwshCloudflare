@@ -11,7 +11,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.0.1]
 
-### Added
-
 - Initial release.
 
+## [0.1.0]
+
+- Added Cloudflare.ZoneRecord.Types.ps1mxl
+- Updated \*CFZoneRecord functions to use Cloudflare.ZoneRecord type
+- Added unit tests for Get-CFZoneRecord and New-CFZoneRecord
+- Added docs
