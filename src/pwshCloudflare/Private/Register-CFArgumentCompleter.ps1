@@ -15,6 +15,9 @@ function Register-CFArgumentCompleter {
     param()
     begin {}
     process {
+        # Zone Lookup Table
+        $Functions = ($MyInvocation.MyCommand.Module.ExportedFunctions.GetEnumerator() |
+                Where-Object { $_.Value.Parameters.Keys -Contains 'ZoneName' }).Key
         $Script:cfZoneLookupTable = @{}
         Get-CFZone | ForEach-Object {
             $Script:cfZoneLookupTable.Add($_.name, $_.id)
@@ -31,6 +34,29 @@ function Register-CFArgumentCompleter {
                     $fakeBoundParameters
                 )
                 $Script:cfZoneLookupTable.Keys | Where-Object { $_ -like "$WordToComplete*" }
+            }
+        }
+        Register-ArgumentCompleter @Splat
+
+        # Account Lookup Table
+        $Functions = ($MyInvocation.MyCommand.Module.ExportedFunctions.GetEnumerator() |
+                Where-Object { $_.Value.Parameters.Keys -Contains 'AccountName' }).Key
+        $Script:cfAccountLookupTable = @{}
+        Get-CFAccount | ForEach-Object {
+            $Script:cfAccountLookupTable.Add($_.name, $_.id)
+        }
+        $Splat = @{
+            CommandName   = $Functions
+            ParameterName = 'AccountName'
+            ScriptBlock   = {
+                param(
+                    $commandName,
+                    $parameterName,
+                    $wordToComplete,
+                    $commandAst,
+                    $fakeBoundParameters
+                )
+                $Script:cfAccountLookupTable.Keys | Where-Object { $_ -like "$WordToComplete*" }
             }
         }
         Register-ArgumentCompleter @Splat
