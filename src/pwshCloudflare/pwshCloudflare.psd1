@@ -63,6 +63,7 @@
     TypesToProcess    = @(
         'Types\Cloudflare.Account.Types.ps1xml'
         'Types\Cloudflare.D1Database.Types.ps1xml'
+        'Types\Cloudflare.D1QueryResult.Types.ps1xml'
         'Types\Cloudflare.Zone.Types.ps1xml'
         'Types\Cloudflare.ZoneRecord.Types.ps1xml'
     )

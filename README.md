@@ -29,7 +29,7 @@ PowerShell module for interacting with the Cloudflare API.
 
 ## Why
 
-The existing Cloudflare modules in the PSGallery are limited in scope. This project aims to support as many [Cloudflare products](https://developers.cloudflare.com/products/) as possible including R2, D1, Pages, Workers, Workers KV, Workers AI, Images, Stream, Access, Tunnel, Durable Objects, Queues, etc.
+The existing Cloudflare modules in the PSGallery are limited in scope. This project aims to support a broad range of [Cloudflare products](https://developers.cloudflare.com/products/) including R2, D1, Pages, Workers, Workers KV, Workers AI, Images, Stream, Access, Tunnel, Durable Objects, Queues, etc.
 
 ## Getting Started
 

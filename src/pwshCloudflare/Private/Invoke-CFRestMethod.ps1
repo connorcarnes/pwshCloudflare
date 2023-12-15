@@ -36,6 +36,9 @@ function Invoke-CFRestMethod {
     }
     catch {
         if ($_.ErrorDetails.Message -eq 'page not found') {
+            # TODO: This could be that the resource doesn't exists, for example if the user input
+            # the wrong database name. Update this error handling to dump $PsBoundParameters to
+            # give the user more information about what went wrong.
             throw $_
         }
         $ApiError = $_.ErrorDetails.Message | ConvertFrom-Json
