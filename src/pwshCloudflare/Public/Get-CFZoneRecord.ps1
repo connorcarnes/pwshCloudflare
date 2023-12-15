@@ -20,6 +20,7 @@
 #>
 function Get-CFZoneRecord {
     [CmdletBinding()]
+    [OutputType('Cloudflare.ZoneRecord')]
     param(
         [Parameter(ParameterSetName = 'ZoneId', Mandatory)]
         [string]$ZoneId,

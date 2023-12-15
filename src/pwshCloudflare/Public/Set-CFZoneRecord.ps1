@@ -29,6 +29,7 @@
 #>
 function Set-CFZoneRecord {
     [CmdletBinding()]
+    [OutputType('Cloudflare.ZoneRecord')]
     param(
         [Parameter(Mandatory)]
         [string]$RecordId,
