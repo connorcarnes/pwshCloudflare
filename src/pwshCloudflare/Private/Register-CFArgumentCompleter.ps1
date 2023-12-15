@@ -33,7 +33,9 @@ function Register-CFArgumentCompleter {
                     $commandAst,
                     $fakeBoundParameters
                 )
-                $Script:cfZoneLookupTable.Keys | Where-Object { $_ -like "$WordToComplete*" }
+                $Script:cfZoneLookupTable.Keys |
+                    Where-Object { $_ -like "$WordToComplete*" } |
+                    ForEach-Object { "'$_'" }
             }
         }
         Register-ArgumentCompleter @Splat
@@ -56,7 +58,9 @@ function Register-CFArgumentCompleter {
                     $commandAst,
                     $fakeBoundParameters
                 )
-                $Script:cfAccountLookupTable.Keys | Where-Object { $_ -like "$WordToComplete*" }
+                $Script:cfAccountLookupTable.Keys |
+                    Where-Object { $_ -like "$WordToComplete*" } |
+                    ForEach-Object { "'$_'" }
             }
         }
         Register-ArgumentCompleter @Splat
