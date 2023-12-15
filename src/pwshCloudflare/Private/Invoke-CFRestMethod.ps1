@@ -29,9 +29,15 @@ function Invoke-CFRestMethod {
         [object]$Body
     )
     try {
+        if (-not $PSBoundParameters['WebSession']) {
+            $PSBoundParameters.Add('WebSession', $script:cfSession)
+        }
         Invoke-RestMethod @PSBoundParameters
     }
     catch {
+        if ($_.ErrorDetails.Message -eq 'page not found') {
+            throw $_
+        }
         $ApiError = $_.ErrorDetails.Message | ConvertFrom-Json
         if ($ApiError.errors.count -eq 1) {
             throw "Cloudflare API returned error code $($ApiError.errors.code) with message: $($ApiError.errors.message)"
