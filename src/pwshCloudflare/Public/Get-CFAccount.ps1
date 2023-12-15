@@ -5,17 +5,21 @@
     Get Cloudflare account information.
 .PARAMETER AccountId
     ID of account to retrieve. If not specified, all accounts will be returned.
+.PARAMETER AccountName
+    Name of account to retrieve. If not specified, all accounts will be returned.
 .LINK
     https://developers.cloudflare.com/api/operations/accounts-list-accounts
 .LINK
     https://developers.cloudflare.com/api/operations/accounts-account-details
 #>
 function Get-CFAccount {
-    [CmdletBinding()]
+    [CmdletBinding(DefaultParameterSetName = 'AccountId')]
     [OutputType('Cloudflare.Account')]
     param(
-        [Parameter()]
-        [string]$AccountId
+        [Parameter(ParameterSetName = 'AccountId')]
+        [string]$AccountId,
+        [Parameter(ParameterSetName = 'AccountName')]
+        [string]$AccountName
     )
     begin {
         Write-Verbose "$($MyInvocation.MyCommand.Name) :: BEGIN :: $(Get-Date)"
@@ -25,6 +29,9 @@ function Get-CFAccount {
         }
     }
     process {
+        if ($AccountName) {
+            $AccountId = $Script:cfAccountLookupTable[$AccountName]
+        }
         if ($AccountId) {
             $Uri = '{0}/accounts/{1}' -f $Script:cfBaseApiUrl, $AccountId
         }
