@@ -62,6 +62,7 @@
     # Type files (.ps1xml) to be loaded when importing this module
     TypesToProcess    = @(
         'Types\Cloudflare.Account.Types.ps1xml'
+        'Types\Cloudflare.D1Database.Types.ps1xml'
         'Types\Cloudflare.Zone.Types.ps1xml'
         'Types\Cloudflare.ZoneRecord.Types.ps1xml'
     )
@@ -75,10 +76,14 @@
     # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
     FunctionsToExport = @(
         'Get-CFAccount'
+        'Get-CFD1Database'
         'Get-CFZone'
         'Get-CFZoneRecord'
+        'Invoke-CFD1Query'
+        'New-CFD1Database'
         'New-CFZoneRecord'
         'Remove-CFZoneRecord'
+        'Remove-CFD1Database'
         'Set-CFZoneRecord'
         'Set-CloudflareSession'
         'Test-CloudflareSession'
