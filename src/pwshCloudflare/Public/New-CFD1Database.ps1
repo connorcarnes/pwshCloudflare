@@ -1,12 +1,20 @@
 ﻿<#
 .SYNOPSIS
-    Get Cloudflare account information.
+    Creates Cloudflare D1 database.
 .DESCRIPTION
-    Get Cloudflare account information.
+    Creates Cloudflare D1 database.
+.PARAMETER Name
+    Name of database to create.
 .PARAMETER AccountId
     ID of account to retrieve. If not specified, all accounts will be returned.
 .PARAMETER AccountName
     Name of account to retrieve. If not specified, all accounts will be returned.
+.EXAMPLE
+    New-CFD1Database -Name 'myDb' -AccountId '12345'
+    Creates database 'myDb' for account with ID 12345.
+.EXAMPLE
+    New-CFD1Database -Name 'myDb' -AccountName 'My Account'
+    Creates database 'myDb' for account 'My Account'.
 .LINK
     https://developers.cloudflare.com/api/operations/cloudflare-d1-create-database
 #>
@@ -15,19 +23,16 @@ function New-CFD1Database {
     [OutputType('Cloudflare.D1Database')]
     param(
         [Alias('DatabaseName')]
-        [Parameter()]
+        [Parameter(Mandatory)]
         [string]$Name,
-        [Parameter(ParameterSetName = 'AccountId')]
+        [Parameter(Mandatory, ParameterSetName = 'AccountId')]
         [string]$AccountId,
-        [Parameter(ParameterSetName = 'AccountName')]
+        [Parameter(Mandatory, ParameterSetName = 'AccountName')]
         [string]$AccountName
     )
     begin {
         Write-Verbose "$($MyInvocation.MyCommand.Name) :: BEGIN :: $(Get-Date)"
         Write-Verbose "ParameterSetName: $($PSCmdlet.ParameterSetName)"
-        if (-not $script:cfSession) {
-            throw 'Cloudflare session not found. Use Set-CloudflareSession to create a session.'
-        }
     }
     process {
         if ($AccountName) {

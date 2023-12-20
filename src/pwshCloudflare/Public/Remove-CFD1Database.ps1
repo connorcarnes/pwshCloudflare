@@ -3,10 +3,20 @@
     Deletes a Cloudflare D1 database.
 .DESCRIPTION
     Get Cloudflare account information.
+.PARAMETER Name
+    Name of database to delete.
+.PARAMETER Id
+    ID of database to delete.
 .PARAMETER AccountId
     ID of account to retrieve. If not specified, all accounts will be returned.
 .PARAMETER AccountName
     Name of account to retrieve. If not specified, all accounts will be returned.
+.EXAMPLE
+    Remove-CFD1Database -Name 'myDb' -AccountId '12345'
+    Deletes database 'myDb' for account with ID 12345.
+.EXAMPLE
+    Remove-CFD1Database -Name 'myDb' -AccountName 'My Account'
+    Deletes database 'myDb' for account 'My Account'.
 .LINK
     https://developers.cloudflare.com/api/operations/cloudflare-d1-delete-database
 #>

@@ -7,6 +7,12 @@
     ID of account to retrieve. If not specified, all accounts will be returned.
 .PARAMETER AccountName
     Name of account to retrieve. If not specified, all accounts will be returned.
+.EXAMPLE
+    Get-CFAccount -AccountId '12345'
+    Gets account with ID 12345.
+.EXAMPLE
+    Get-CFAccount
+    Lists accounts available to current user.
 .LINK
     https://developers.cloudflare.com/api/operations/accounts-list-accounts
 .LINK
