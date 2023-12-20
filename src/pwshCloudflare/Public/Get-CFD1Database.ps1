@@ -1,12 +1,25 @@
 ﻿<#
 .SYNOPSIS
-    Get Cloudflare account information.
+    Gets Cloudflare D1 database(s).
 .DESCRIPTION
-    Get Cloudflare account information.
+    Gets Cloudflare D1 database(s). Must provide exactly one of AccountId or AccountName. If Name or Id is not specified, all databases will be returned.
+.PARAMETER Name
+    Name of database to retrieve. If not specified, all databases will be returned.
+.PARAMETER Id
+    ID of database to retrieve. If not specified, all databases will be returned.
 .PARAMETER AccountId
     ID of account to retrieve. If not specified, all accounts will be returned.
 .PARAMETER AccountName
     Name of account to retrieve. If not specified, all accounts will be returned.
+.EXAMPLE
+    Get-CFD1Database -AccountId '12345'
+    Gets all databases for account with ID 12345.
+.EXAMPLE
+    Get-CFD1Database -AccountName 'My Account' -Name 'myDb'
+    Gets databsse 'myDb' for account 'My Account'.
+.EXAMPLE
+    Get-CFD1Database -AccountName 'My Account' -Id '12345'
+    Gets database with ID 12345 for account 'My Account'.
 .NOTES
     The cloudflare-d1-list-databases API endpoint returns the properties uuid, name, version and created_at.
     The cloudflare-d1-get-database API endpoint returns the same properties as well as num_tables, file_size and running_in region.
@@ -21,31 +34,27 @@ function Get-CFD1Database {
     [CmdletBinding()]
     [OutputType('Cloudflare.D1Database')]
     param(
-        [Parameter(ParameterSetName = 'AccountNameDatabaseName')]
-        [Parameter(ParameterSetName = 'AccountIdDatabaseName')]
+        [Parameter(ParameterSetName = 'AccountName')]
+        [Parameter(ParameterSetName = 'AccountId')]
         [Alias('DatabaseName')]
         [string]$Name,
-        [Parameter(ParameterSetName = 'AccountNameDatabaseId')]
-        [Parameter(ParameterSetName = 'AccountIdDatabaseId')]
+        [Parameter(ParameterSetName = 'AccountName')]
+        [Parameter(ParameterSetName = 'AccountId')]
         [Alias('DatabaseId')]
         [string]$Id,
-        [Parameter(ParameterSetName = 'ListAllByAccountId')]
-        [Parameter(ParameterSetName = 'AccountIdDatabaseName')]
-        [Parameter(ParameterSetName = 'AccountIdDatabaseId')]
+        [Parameter(Mandatory, ParameterSetName = 'AccountId')]
         [string]$AccountId,
-        [Parameter(ParameterSetName = 'ListAllByAccountName')]
-        [Parameter(ParameterSetName = 'AccountNameDatabaseName')]
-        [Parameter(ParameterSetName = 'AccountNameDatabaseId')]
-        [string]$AccountName,
-        [Parameter(ParameterSetName = 'ListAllByAccountName')]
-        [Parameter(ParameterSetName = 'ListAllByAccountId')]
-        [switch]$List
+        [Parameter(Mandatory, ParameterSetName = 'AccountName')]
+        [string]$AccountName
     )
     begin {
         Write-Verbose "$($MyInvocation.MyCommand.Name) :: BEGIN :: $(Get-Date)"
         Write-Verbose "ParameterSetName: $($PSCmdlet.ParameterSetName)"
-        if (-not $script:cfSession) {
-            throw 'Cloudflare session not found. Use Set-CloudflareSession to create a session.'
+        if (($AccountId -and $AccountName) -or
+            (-not $AccountId -and -not $AccountName) -or
+            ($Name -and $Id)
+        ) {
+            throw 'Must provide exactly one of AccountId or AccountName and exactly one or none of Name or Id'
         }
     }
     process {
@@ -56,7 +65,7 @@ function Get-CFD1Database {
             Method     = 'Get'
             WebSession = $script:cfSession
         }
-        if ($List) {
+        if (-not $Id -and -not $Name) {
             Write-Verbose "Listing all databases for account $AccountId"
             $FindResult = Find-CFD1Database -AccountId $AccountId
             $Output = [System.Collections.ArrayList]::new()
