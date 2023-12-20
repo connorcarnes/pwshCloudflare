@@ -30,9 +30,6 @@ function Get-CFZoneRecord {
     begin {
         Write-Verbose "$($MyInvocation.MyCommand.Name) :: BEGIN :: $(Get-Date)"
         Write-Verbose "ParameterSetName: $($PSCmdlet.ParameterSetName)"
-        if (-not $script:cfSession) {
-            throw 'Cloudflare session not found. Use Set-CloudflareSession to create a session.'
-        }
     }
     process {
         if ($ZoneName) {

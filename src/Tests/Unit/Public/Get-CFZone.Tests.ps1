@@ -19,17 +19,10 @@ InModuleScope 'pwshCloudflare' {
             # Mock the dependent cmdlets and variables
             Mock Invoke-CFRestMethod { return @{ result = @(@{ Name = 'TestZone'; Id = '12345' }) } }
             $script:cfBaseApiUrl = 'https://api.cloudflare.com/client/v4'
-        }
-        BeforeEach {
             $script:cfSession = New-Object Microsoft.PowerShell.Commands.WebRequestSession
         }
-        Context 'Error' {
-            It 'should throw an error if Cloudflare session is not found' {
-                $ZoneName = 'example.com'
-                $script:cfSession = $null
-                { Get-CFZone -ZoneName $ZoneName } | Should -Throw
-            }
-        }
+        # Context 'Error' {
+        # }
         Context 'Success' {
             It 'Calls Invoke-CFRestMethod with correct parameters for ZoneName' {
                 Get-CFZone -ZoneName 'example.com'
