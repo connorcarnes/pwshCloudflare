@@ -12,35 +12,39 @@ Import-Module $PathToManifest -Force
 #-------------------------------------------------------------------------
 
 InModuleScope 'pwshCloudflare' {
-    Describe 'Get-CFZone Function Tests' -Tag Unit {
+    Describe 'Invoke-CFRestMethod Function Tests' -Tag Unit {
         BeforeAll {
             $WarningPreference = 'SilentlyContinue'
             $ErrorActionPreference = 'SilentlyContinue'
             # Mock the dependent cmdlets and variables
-            Mock Invoke-CFRestMethod { return @{ result = @(@{ Name = 'TestZone'; Id = '12345' }) } }
+            Mock Invoke-RestMethod
             $script:cfBaseApiUrl = 'https://api.cloudflare.com/client/v4'
             $script:cfSession = New-Object Microsoft.PowerShell.Commands.WebRequestSession
         }
-        # Context 'Error' {
-        # }
         Context 'Success' {
-            It 'Calls Invoke-CFRestMethod with correct parameters for ZoneName' {
-                Get-CFZone -ZoneName 'example.com'
-                Assert-MockCalled Invoke-CFRestMethod -Exactly 1 -Scope It -ParameterFilter {
-                    $Uri -eq 'https://api.cloudflare.com/client/v4/zones?name=example.com' -and
-                    $Method -eq 'GET'
-                }
+            It 'should call Invoke-RestMethod with <Method>' -TestCases @(
+                @{ Method = 'GET' },
+                @{ Method = 'POST' },
+                @{ Method = 'PUT' },
+                @{ Method = 'PATCH' },
+                @{ Method = 'DELETE' }
+            ) {
+                param($Method)
+
+                Invoke-CFRestMethod -Method $Method -Uri 'https://api.cloudflare.com/client/v4/zones'
+                Assert-MockCalled Invoke-RestMethod -ParameterFilter { $Method -eq $Method } -Times 1 -Exactly
             }
-            It 'Calls Invoke-CFRestMethod with correct parameters for ZoneID' {
-                Get-CFZone -ZoneID '12345'
-                Assert-MockCalled Invoke-CFRestMethod -Exactly 1 -Scope It -ParameterFilter {
-                    $Uri -eq 'https://api.cloudflare.com/client/v4/zones?id=12345' -and
-                    $Method -eq 'GET'
-                }
+            It 'should successfully invoke the method with valid parameters' {
+                $uri = 'https://api.cloudflare.com/client/v4/zones'
+                Invoke-CFRestMethod -Method 'GET' -Uri $uri
+                Assert-MockCalled Invoke-RestMethod -ParameterFilter { $Uri -eq $uri } -Times 1 -Exactly
             }
-            It 'Returns objects of type Cloudflare.Zone' {
-                $result = Get-CFZone -ZoneName 'example.com'
-                $result.PSObject.TypeNames[0] | Should -BeExactly 'Cloudflare.Zone'
+        }
+        Context 'Error' {
+            It 'should throw an error if Cloudflare session is not found' {
+                $ZoneName = 'example.com'
+                $script:cfSession = $null
+                { Invoke-CFRestMethod -ZoneName $ZoneName } | Should -Throw
             }
         }
         AfterAll {

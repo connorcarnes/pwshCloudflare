@@ -19,17 +19,10 @@ InModuleScope 'pwshCloudflare' {
             $script:cfBaseApiUrl = 'https://api.cloudflare.com/client/v4'
             $Script:cfZoneLookupTable = @{'example.com' = '12345' }
             Mock Invoke-CFRestMethod { return @{ result = @{'id' = '12345' } } }
-        }
-        BeforeEach {
             $script:cfSession = New-Object Microsoft.PowerShell.Commands.WebRequestSession
         }
-        Context 'Error' {
-            It 'should throw an error if Cloudflare session is not found' {
-                $ZoneName = 'example.com'
-                $script:cfSession = $null
-                { Remove-CFZoneRecord -ZoneName $ZoneName -RecordId '12345' } | Should -Throw
-            }
-        }
+        # Context 'Error' {
+        # }
         Context 'Success' {
             It 'Calls Invoke-CFRestMethod with correct parameters for ZoneName' {
                 Remove-CFZoneRecord -ZoneName 'example.com' -RecordId '12345'

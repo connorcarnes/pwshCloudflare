@@ -21,15 +21,20 @@ PowerShell module for interacting with the Cloudflare API.
 
 | Function            | ApiOperation                                                                                                   |
 | ------------------- | -------------------------------------------------------------------------------------------------------------- |
-| Get-CFZone          | [List Zones](https://developers.cloudflare.com/api/operations/zones-get)                                       |
-| Get-CFZoneRecord    | [List DNS Records](https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-list-dns-records)   |
-| New-CFZoneRecord    | [Create DNS Record](https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-create-dns-record) |
-| Remove-CFZoneRecord | [Delete DNS Record](https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-delete-dns-record) |
-| Set-CFZoneRecord    | [Patch DNS Record](https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-patch-dns-record)   |
+| [Get-CFAccount](docs/Get-CFAccount.md)             | [Account Details](https://developers.cloudflare.com/api/operations/accounts-account-details)                   |
+| [Get-CFD1Database](docs/Get-CFD1Database.md)       | [Get D1 Database](https://developers.cloudflare.com/api/operations/cloudflare-d1-get-database)                 |
+| [Get-CFZone](docs/Get-CFZone.md)                   | [List Zones](https://developers.cloudflare.com/api/operations/zones-get)                                       |
+| [Get-CFZoneRecord](docs/Get-CFZoneRecord.md)       | [List DNS Records](https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-list-dns-records)   |
+| [Invoke-CFD1Query](docs/Invoke-CFD1Query.md)       | [Query D1 Database](https://developers.cloudflare.com/api/operations/cloudflare-d1-query-database)             |
+| [New-CFD1Database](docs/New-CFD1Database.md)       | [Create D1 Database](https://developers.cloudflare.com/api/operations/cloudflare-d1-create-database)           |
+| [New-CFZoneRecord](docs/New-CFZoneRecord.md)       | [Create DNS Record](https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-create-dns-record) |
+| [Remove-CFD1Database](docs/New-CFD1Database.md)    | [Delete D1 Database](https://developers.cloudflare.com/api/operations/cloudflare-d1-delete-database)           |
+| [Remove-CFZoneRecord](docs/Remove-CFZoneRecord.md) | [Delete DNS Record](https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-delete-dns-record) |
+| [Set-CFZoneRecord](docs/Set-CFZoneRecord.md)       | [Patch DNS Record](https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-patch-dns-record)   |
 
 ## Why
 
-The existing Cloudflare modules in the PSGallery are limited in scope. This project aims to support as many [Cloudflare products](https://developers.cloudflare.com/products/) as possible including R2, D1, Pages, Workers, Workers KV, Workers AI, Images, Stream, Access, Tunnel, Durable Objects, Queues, etc.
+The existing Cloudflare modules in the PSGallery are limited in scope. This project aims to support a broad range of [Cloudflare products](https://developers.cloudflare.com/products/) including R2, D1, Pages, Workers, Workers KV, Workers AI, Images, Stream, Access, Tunnel, Durable Objects, Queues, etc.
 
 ## Getting Started
 

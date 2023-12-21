@@ -15,13 +15,13 @@ Updates a DNS record for a Cloudflare zone.
 ### ZoneId
 ```
 Set-CFZoneRecord -RecordId <String> -ZoneId <String> [-Content <String>] [-Name <String>] [-Type <String>]
- [-TTL <Int32>] [-Proxied <Boolean>] [<CommonParameters>]
+ [-TTL <Int32>] [-Proxied <Boolean>] [-Priority <Int32>] [<CommonParameters>]
 ```
 
 ### ZoneName
 ```
 Set-CFZoneRecord -RecordId <String> -ZoneName <String> [-Content <String>] [-Name <String>] [-Type <String>]
- [-TTL <Int32>] [-Proxied <Boolean>] [<CommonParameters>]
+ [-TTL <Int32>] [-Proxied <Boolean>] [-Priority <Int32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -160,6 +160,22 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Priority
+Required for MX, SRV, and URI records; unused by other record types.
+Records with lower priorities are preferred.
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: 0
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.
 For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
@@ -168,6 +184,7 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## OUTPUTS
 
+### Cloudflare.ZoneRecord
 ## NOTES
 
 ## RELATED LINKS

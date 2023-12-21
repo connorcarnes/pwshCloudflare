@@ -83,6 +83,7 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ### None.
 ## OUTPUTS
 
+### Cloudflare.ZoneRecord
 ## NOTES
 
 ## RELATED LINKS

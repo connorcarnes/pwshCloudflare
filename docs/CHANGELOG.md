@@ -26,3 +26,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add tests for Remove-CFZoneRecord, Set-CFZoneRecord, Set-CloudflareSession, Test-CloudflareSession
 - Update priority parameter in Set-CFZoneRecord
 - Remove Update-TypeData from psm1
+
+## [0.2.0]
+
+- Add D1 functions, types and tests
+- Add Get-CFAccount function, types and tests
+- Updates to arguement completers
