@@ -26,6 +26,8 @@
     When listing all databases or getting a database by name this function makes multiple API calls. The first call is to get the database ID(s). The subsequent call(s) use the ID(s) to get the database details.
     This is done so that the same output is returned regardless of parameters used.
 .LINK
+    https://github.com/connorcarnes/pwshCloudflare
+.LINK
     https://developers.cloudflare.com/api/operations/cloudflare-d1-list-databases
 .LINK
     https://developers.cloudflare.com/api/operations/cloudflare-d1-get-database

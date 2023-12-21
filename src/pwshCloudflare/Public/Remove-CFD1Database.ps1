@@ -18,6 +18,8 @@
     Remove-CFD1Database -Name 'myDb' -AccountName 'My Account'
     Deletes database 'myDb' for account 'My Account'.
 .LINK
+    https://github.com/connorcarnes/pwshCloudflare
+.LINK
     https://developers.cloudflare.com/api/operations/cloudflare-d1-delete-database
 #>
 function Remove-CFD1Database {

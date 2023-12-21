@@ -25,6 +25,8 @@
     Set-CFZoneRecord -ZoneName example.com -RecordId 123abc456abc -Content 'UpdatedContent'
     This example updates the content for record with id 123abc456abc in the zone example.com to 'UpdatedContent'.
 .LINK
+    https://github.com/connorcarnes/pwshCloudflare
+.LINK
     https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-patch-dns-record
 #>
 function Set-CFZoneRecord {

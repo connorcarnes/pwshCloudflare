@@ -1,7 +1,7 @@
 ---
 external help file: pwshCloudflare-help.xml
 Module Name: pwshCloudflare
-online version: https://developers.cloudflare.com/fundamentals/api/
+online version: https://github.com/connorcarnes/pwshCloudflare
 schema: 2.0.0
 ---
 
@@ -14,7 +14,8 @@ Configures authentication for the Cloudflare API using an API token, legacy auth
 
 ### SessionOnly (Default)
 ```
-Set-CloudflareSession [-Email <String>] [-ApiKey <String>] [-ApiToken <String>] [<CommonParameters>]
+Set-CloudflareSession [-Email <String>] [-ApiKey <String>] [-ApiToken <String>]
+ [<CommonParameters>]
 ```
 
 ### SaveToFile
@@ -25,7 +26,8 @@ Set-CloudflareSession [-Email <String>] [-ApiKey <String>] [-ApiToken <String>] 
 
 ### ImportFromFile
 ```
-Set-CloudflareSession [-ImportFromFile] [-FilePath <String>] [<CommonParameters>]
+Set-CloudflareSession [-ImportFromFile] [-FilePath <String>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -174,7 +176,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutBuffer, -OutVariable, -PipelineVariable, -Verbose, -WarningAction, -WarningVariable, and -ProgressAction.
 For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
@@ -185,5 +187,6 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## RELATED LINKS
 
-[https://developers.cloudflare.com/fundamentals/api/](https://developers.cloudflare.com/fundamentals/api/)
+[https://github.com/connorcarnes/pwshCloudflare](https://github.com/connorcarnes/pwshCloudflare)
 
+[https://developers.cloudflare.com/fundamentals/api/](https://developers.cloudflare.com/fundamentals/api/)

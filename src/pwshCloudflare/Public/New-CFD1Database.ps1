@@ -16,6 +16,8 @@
     New-CFD1Database -Name 'myDb' -AccountName 'My Account'
     Creates database 'myDb' for account 'My Account'.
 .LINK
+    https://github.com/connorcarnes/pwshCloudflare
+.LINK
     https://developers.cloudflare.com/api/operations/cloudflare-d1-create-database
 #>
 function New-CFD1Database {

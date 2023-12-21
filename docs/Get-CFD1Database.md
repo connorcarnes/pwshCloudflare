@@ -1,7 +1,7 @@
 ---
 external help file: pwshCloudflare-help.xml
 Module Name: pwshCloudflare
-online version: https://developers.cloudflare.com/api/operations/cloudflare-d1-list-databases
+online version: https://github.com/connorcarnes/pwshCloudflare
 schema: 2.0.0
 ---
 
@@ -14,12 +14,14 @@ Gets Cloudflare D1 database(s).
 
 ### AccountId
 ```
-Get-CFD1Database [-Name <String>] [-Id <String>] -AccountId <String> [<CommonParameters>]
+Get-CFD1Database [-Name <String>] [-Id <String>] -AccountId <String>
+ [<CommonParameters>]
 ```
 
 ### AccountName
 ```
-Get-CFD1Database [-Name <String>] [-Id <String>] -AccountName <String> [<CommonParameters>]
+Get-CFD1Database [-Name <String>] [-Id <String>] -AccountName <String>
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -114,7 +116,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutBuffer, -OutVariable, -PipelineVariable, -Verbose, -WarningAction, -WarningVariable, and -ProgressAction. 
 For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
@@ -132,7 +134,8 @@ This is done so that the same output is returned regardless of parameters used.
 
 ## RELATED LINKS
 
+[https://github.com/connorcarnes/pwshCloudflare](https://github.com/connorcarnes/pwshCloudflare)
+
 [https://developers.cloudflare.com/api/operations/cloudflare-d1-list-databases](https://developers.cloudflare.com/api/operations/cloudflare-d1-list-databases)
 
 [https://developers.cloudflare.com/api/operations/cloudflare-d1-get-database](https://developers.cloudflare.com/api/operations/cloudflare-d1-get-database)
-

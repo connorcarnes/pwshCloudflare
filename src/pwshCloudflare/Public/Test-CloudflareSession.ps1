@@ -22,6 +22,8 @@
     Test-CloudflareSession @Splat
     Configures a new [Microsoft.PowerShell.Commands.WebRequestSession] and tests authentication.
 .LINK
+    https://github.com/connorcarnes/pwshCloudflare
+.LINK
     https://developers.cloudflare.com/fundamentals/api/
 #>
 function Test-CloudflareSession {

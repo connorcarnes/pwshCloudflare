@@ -29,6 +29,8 @@
     Invoke-CFD1Query -AccountName 'myAccount' -Name 'myDb' -Query $Query -QueryParams $QueryParams
     Returns the user with username 'JohnDoe' from the 'users' table of the 'myDb' database.
 .LINK
+    https://github.com/connorcarnes/pwshCloudflare
+.LINK
     https://developers.cloudflare.com/api/operations/cloudflare-d1-query-database
 .LINK
     https://developers.cloudflare.com/d1/platform/client-api

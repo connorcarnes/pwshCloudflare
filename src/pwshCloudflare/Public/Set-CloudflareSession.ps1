@@ -37,6 +37,8 @@
     Set-CloudflareSession @Splat
     Configures authentication, saves the configuration to the default location and sets the module to load the configuration on import.
 .LINK
+    https://github.com/connorcarnes/pwshCloudflare
+.LINK
     https://developers.cloudflare.com/fundamentals/api/
 #>
 function Set-CloudflareSession {

@@ -1,7 +1,7 @@
 ---
 external help file: pwshCloudflare-help.xml
 Module Name: pwshCloudflare
-online version: https://developers.cloudflare.com/api/operations/cloudflare-d1-delete-database
+online version: https://github.com/connorcarnes/pwshCloudflare
 schema: 2.0.0
 ---
 
@@ -14,12 +14,14 @@ Deletes a Cloudflare D1 database.
 
 ### AccountId
 ```
-Remove-CFD1Database [-Name <String>] [-Id <String>] [-AccountId <String>] [<CommonParameters>]
+Remove-CFD1Database [-Name <String>] [-Id <String>] [-AccountId <String>]
+ [<CommonParameters>]
 ```
 
 ### AccountName
 ```
-Remove-CFD1Database [-Name <String>] [-Id <String>] [-AccountName <String>] [<CommonParameters>]
+Remove-CFD1Database [-Name <String>] [-Id <String>] [-AccountName <String>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -104,7 +106,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutBuffer, -OutVariable, -PipelineVariable, -Verbose, -WarningAction, -WarningVariable, and -ProgressAction.
 For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
@@ -116,5 +118,6 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## RELATED LINKS
 
-[https://developers.cloudflare.com/api/operations/cloudflare-d1-delete-database](https://developers.cloudflare.com/api/operations/cloudflare-d1-delete-database)
+[https://github.com/connorcarnes/pwshCloudflare](https://github.com/connorcarnes/pwshCloudflare)
 
+[https://developers.cloudflare.com/api/operations/cloudflare-d1-delete-database](https://developers.cloudflare.com/api/operations/cloudflare-d1-delete-database)
