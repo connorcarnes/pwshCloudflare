@@ -21,9 +21,14 @@ PowerShell module for interacting with the Cloudflare API.
 
 | Function            | ApiOperation                                                                                                   |
 | ------------------- | -------------------------------------------------------------------------------------------------------------- |
+| Get-CFAccount       | [Account Details](https://developers.cloudflare.com/api/operations/accounts-account-details)                   |
+| Get-CFD1Database    | [Get D1 Database](https://developers.cloudflare.com/api/operations/cloudflare-d1-get-database)                 |
 | Get-CFZone          | [List Zones](https://developers.cloudflare.com/api/operations/zones-get)                                       |
 | Get-CFZoneRecord    | [List DNS Records](https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-list-dns-records)   |
+| Invoke-CFD1Query    | [Query D1 Database](https://developers.cloudflare.com/api/operations/cloudflare-d1-query-database)             |
+| New-CFD1Database    | [Create D1 Database](https://developers.cloudflare.com/api/operations/cloudflare-d1-create-database)           |
 | New-CFZoneRecord    | [Create DNS Record](https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-create-dns-record) |
+| Remove-CFD1Database | [Delete D1 Database](https://developers.cloudflare.com/api/operations/cloudflare-d1-delete-database)           |
 | Remove-CFZoneRecord | [Delete DNS Record](https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-delete-dns-record) |
 | Set-CFZoneRecord    | [Patch DNS Record](https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-patch-dns-record)   |
 
