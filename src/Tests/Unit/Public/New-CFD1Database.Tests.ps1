@@ -19,7 +19,6 @@ InModuleScope 'pwshCloudflare' {
             # Mock the dependent cmdlets and variables
             $script:cfBaseApiUrl = 'https://api.cloudflare.com/client/v4'
             Mock Invoke-CFRestMethod { return [PSCustomObject]@{ result = [PSCustomObject]@{ DatabaseName = 'myDb' } } }
-            Mock Find-CFD1Database { return [PSCustomObject]@{ result = [PSCustomObject]@{ DatabaseName = 'myDb' } } }
         }
         Context 'Error' {
             It 'should throw an error if required parameters are missing' {
