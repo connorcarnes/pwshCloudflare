@@ -2,7 +2,7 @@
 Module Name: pwshCloudflare
 Module Guid: 3d4f9301-da84-4e63-9249-493417c5589c
 Download Help Link: NA
-Help Version: 0.0.1
+Help Version: 0.2.0
 Locale: en-US
 ---
 
