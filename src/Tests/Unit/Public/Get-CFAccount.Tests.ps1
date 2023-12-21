@@ -18,6 +18,8 @@ InModuleScope 'pwshCloudflare' {
             $ErrorActionPreference = 'SilentlyContinue'
             # Mock the dependent cmdlets and variables
             $script:cfBaseApiUrl = 'https://api.cloudflare.com/client/v4'
+            $script:cfAccountLookupTable = @{'myAccount' = '12345' }
+            $script:cfSession = New-Object Microsoft.PowerShell.Commands.WebRequestSession
             Mock Invoke-CFRestMethod { return [PSCustomObject]@{ result = [PSCustomObject]@{ AccountName = 'myAcct' } } }
         }
         # Context 'Error' {
