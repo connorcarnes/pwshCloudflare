@@ -16,6 +16,8 @@
 .INPUTS
     None.
 .LINK
+    https://github.com/connorcarnes/pwshCloudflare
+.LINK
     https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-list-dns-records
 #>
 function Get-CFZoneRecord {

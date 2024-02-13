@@ -1,7 +1,7 @@
 ---
 external help file: pwshCloudflare-help.xml
 Module Name: pwshCloudflare
-online version: https://developers.cloudflare.com/api/operations/zones-get
+online version: https://github.com/connorcarnes/pwshCloudflare
 schema: 2.0.0
 ---
 
@@ -13,7 +13,8 @@ Retrieves information about a Cloudflare zone.
 ## SYNTAX
 
 ```
-Get-CFZone [[-ZoneName] <String>] [[-ZoneID] <String>] [<CommonParameters>]
+Get-CFZone [[-ZoneName] <String>] [[-ZoneID] <String>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -69,7 +70,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutBuffer, -OutVariable, -PipelineVariable, -Verbose, -WarningAction, -WarningVariable, and -ProgressAction.
 For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
@@ -81,5 +82,6 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## RELATED LINKS
 
-[https://developers.cloudflare.com/api/operations/zones-get](https://developers.cloudflare.com/api/operations/zones-get)
+[https://github.com/connorcarnes/pwshCloudflare](https://github.com/connorcarnes/pwshCloudflare)
 
+[https://developers.cloudflare.com/api/operations/zones-get](https://developers.cloudflare.com/api/operations/zones-get)

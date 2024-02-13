@@ -14,6 +14,8 @@
     Get-CFAccount
     Lists accounts available to current user.
 .LINK
+    https://github.com/connorcarnes/pwshCloudflare
+.LINK
     https://developers.cloudflare.com/api/operations/accounts-list-accounts
 .LINK
     https://developers.cloudflare.com/api/operations/accounts-account-details

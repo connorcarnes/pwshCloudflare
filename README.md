@@ -9,13 +9,9 @@
 | main   | ![Build Status Windows PowerShell Main](https://github.com/connorcarnes/pwshCloudflare/actions/workflows/wf_WindowsPowerShell.yml/badge.svg?branch=main) | ![Build Status Windows pwsh Main](https://github.com/connorcarnes/pwshCloudflare/actions/workflows/wf_Windows.yml/badge.svg?branch=main) | ![Build Status Linux Main](https://github.com/connorcarnes/pwshCloudflare/actions/workflows/wf_Linux.yml/badge.svg?branch=main) | ![Build Status MacOS dev](https://github.com/connorcarnes/pwshCloudflare/actions/workflows/wf_MacOS.yml/badge.svg?branch=main) |
 | dev    | ![Build Status Windows PowerShell dev](https://github.com/connorcarnes/pwshCloudflare/actions/workflows/wf_WindowsPowerShell.yml/badge.svg?branch=dev)   | ![Build Status Windows pwsh dev](https://github.com/connorcarnes/pwshCloudflare/actions/workflows/wf_Windows.yml/badge.svg?branch=dev)   | ![Build Status Linux dev](https://github.com/connorcarnes/pwshCloudflare/actions/workflows/wf_Linux.yml/badge.svg?branch=dev)   | ![Build Status MacOS dev](https://github.com/connorcarnes/pwshCloudflare/actions/workflows/wf_MacOS.yml/badge.svg?branch=dev)  |
 
-## Synopsis
-
-PowerShell module for interacting with the Cloudflare API.
-
 ## Description
 
-PowerShell module for interacting with the Cloudflare API.
+PowerShell module for the [Cloudflare Client API v4](https://developers.cloudflare.com/api/). See similar projects [python-cloudflare](https://github.com/cloudflare/python-cloudflare) and [cloudflare-go](https://github.com/cloudflare/cloudflare-go) as well as [Cloudflare products](https://developers.cloudflare.com/products/)
 
 ## Functions
 
@@ -31,10 +27,6 @@ PowerShell module for interacting with the Cloudflare API.
 | [Remove-CFD1Database](docs/New-CFD1Database.md)    | [Delete D1 Database](https://developers.cloudflare.com/api/operations/cloudflare-d1-delete-database)           |
 | [Remove-CFZoneRecord](docs/Remove-CFZoneRecord.md) | [Delete DNS Record](https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-delete-dns-record) |
 | [Set-CFZoneRecord](docs/Set-CFZoneRecord.md)       | [Patch DNS Record](https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-patch-dns-record)   |
-
-## Why
-
-The existing Cloudflare modules in the PSGallery are limited in scope. This project aims to support a broad range of [Cloudflare products](https://developers.cloudflare.com/products/) including R2, D1, Pages, Workers, Workers KV, Workers AI, Images, Stream, Access, Tunnel, Durable Objects, Queues, etc.
 
 ## Getting Started
 
@@ -101,3 +93,7 @@ $ZoneName = 'example.com'
 $Zone = Get-CfZone | Where-Object {$_.Name -eq $ZoneName}
 Get-CFZoneRecord -ZoneId $Zone.id
 ```
+
+## Contributors
+
+- [Connor Carnes](https://github.com/connorcarnes)

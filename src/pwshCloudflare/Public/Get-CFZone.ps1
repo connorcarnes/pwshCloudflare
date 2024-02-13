@@ -1,28 +1,23 @@
 ﻿<#
 .SYNOPSIS
     Retrieves information about a Cloudflare zone.
-
 .DESCRIPTION
     The Get-CFZone function queries the Cloudflare API to retrieve information about a specific zone.
     It can query zones based on either the zone name or the zone ID.
-
 .PARAMETER ZoneName
     The name of the zone to retrieve. This parameter is mutually exclusive with ZoneID.
-
 .PARAMETER ZoneID
     The unique identifier of the zone to retrieve. This parameter is mutually exclusive with ZoneName.
-
 .EXAMPLE
     PS> Get-CFZone -ZoneName "example.com"
     This example retrieves information about the zone named "example.com".
-
 .EXAMPLE
     PS> Get-CFZone -ZoneID "1234567890abcdef1234567890abcdef"
     This example retrieves information about the zone with the ID "1234567890abcdef1234567890abcdef".
-
 .OUTPUTS
     Cloudflare.Zone
-
+.LINK
+    https://github.com/connorcarnes/pwshCloudflare
 .LINK
     https://developers.cloudflare.com/api/operations/zones-get
 #>

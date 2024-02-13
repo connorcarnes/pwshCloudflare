@@ -26,6 +26,8 @@
     New-CFZoneRecord -ZoneName 'example.com' -Content 'mail.example.com' -Name 'example.com' -Type 'MX' -TTL 3600 -Proxied $false -Priority 10
     Creates a new 'MX' record with the specified parameters in the Cloudflare zone with the name 'example.com'.
 .LINK
+    https://github.com/connorcarnes/pwshCloudflare
+.LINK
     https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-create-dns-record
 #>
 function New-CFZoneRecord {

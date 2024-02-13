@@ -16,6 +16,8 @@
     Remove-CFZoneRecord -ZoneName "example.com" -RecordId "987654321"
     Removes the DNS record with the specified RecordId from the Cloudflare zone with the specified ZoneName.
 .LINK
+    https://github.com/connorcarnes/pwshCloudflare
+.LINK
     https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-delete-dns-record
 #>
 function Remove-CFZoneRecord {
