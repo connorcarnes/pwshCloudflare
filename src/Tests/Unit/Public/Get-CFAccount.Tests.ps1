@@ -13,9 +13,7 @@ InModuleScope 'pwshCloudflare' {
             # Set variables and load mock data required for each test
             $script:cfBaseApiUrl = 'https://api.cloudflare.com/client/v4'
             $script:cfSession = New-Object Microsoft.PowerShell.Commands.WebRequestSession
-            $ModuleName = 'pwshCloudflare'
-            $PathToFunction = [System.IO.Path]::Combine('..', '..', '..', $ModuleName, 'Resources', 'Get-MockApiResponse.ps1')
-            . $PathToFunction
+            . $PSScriptRoot/Get-MockApiResponse.ps1
             $mockResponse = Get-MockApiResponse
         }
         Context 'Error' {
