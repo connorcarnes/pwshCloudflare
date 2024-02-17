@@ -32,6 +32,8 @@ function Invoke-CFRestMethod {
         if (-not $PSBoundParameters['WebSession']) {
             $PSBoundParameters.Add('WebSession', $script:cfSession)
         }
+        Write-Verbose "Uri: $($PSBoundParameters['Uri'])"
+        Write-Verbose "Method: $($PSBoundParameters['Method'])"
         Invoke-RestMethod @PSBoundParameters
     }
     catch {
