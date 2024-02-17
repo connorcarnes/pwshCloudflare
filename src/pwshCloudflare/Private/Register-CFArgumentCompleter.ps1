@@ -42,14 +42,18 @@ function Register-CFArgumentCompleter {
 
         # Account Lookup Table
         $Functions = ($MyInvocation.MyCommand.Module.ExportedFunctions.GetEnumerator() |
-                Where-Object { $_.Value.Parameters.Keys -Contains 'AccountName' }).Key
+                Where-Object {
+                    $_.Value.Parameters.Keys -Contains 'AccountName' -or
+                    $_.Value.Parameters.Name.Aliases -contains 'AccountName'
+                }
+        ).Key
         $Script:cfAccountLookupTable = @{}
         Get-CFAccount | ForEach-Object {
             $Script:cfAccountLookupTable.Add($_.name, $_.id)
         }
         $Splat = @{
             CommandName   = $Functions
-            ParameterName = 'AccountName'
+            ParameterName = 'Name'
             ScriptBlock   = {
                 param(
                     $commandName,
