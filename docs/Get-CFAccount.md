@@ -12,18 +12,14 @@ Get Cloudflare account information.
 
 ## SYNTAX
 
-### AccountId (Default)
 ```
-Get-CFAccount [-AccountId <String>] [<CommonParameters>]
-```
-
-### AccountName
-```
-Get-CFAccount [-AccountName <String>] [<CommonParameters>]
+Get-CFAccount [[-Id] <String>] [[-Name] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Get Cloudflare account information.
+Returns accounts available to the current user.
+Accounts can be specified by their name or id.
+All accounts are returned if name or id is not specified.
 
 ## EXAMPLES
 
@@ -41,33 +37,31 @@ Lists accounts available to current user.
 
 ## PARAMETERS
 
-### -AccountId
+### -Id
 ID of account to retrieve.
-If not specified, all accounts will be returned.
 
 ```yaml
 Type: String
-Parameter Sets: AccountId
-Aliases:
+Parameter Sets: (All)
+Aliases: AccountId
 
 Required: False
-Position: Named
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -AccountName
+### -Name
 Name of account to retrieve.
-If not specified, all accounts will be returned.
 
 ```yaml
 Type: String
-Parameter Sets: AccountName
-Aliases:
+Parameter Sets: (All)
+Aliases: AccountName
 
 Required: False
-Position: Named
+Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
