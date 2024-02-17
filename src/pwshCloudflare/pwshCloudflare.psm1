@@ -32,12 +32,6 @@ foreach ($file in @($public + $private)) {
 # export all public functions
 Export-ModuleMember -Function $public.Basename
 
-$Path = [Environment]::GetFolderPath([Environment+SpecialFolder]::UserProfile)
-$cfFolder = "$Path\.pwshCloudflare"
-$Script:cfConfigPath = "$cfFolder\config.xml"
-$Script:cfBaseApiUrl = 'https://api.cloudflare.com/client/v4'
-$Script:cfApiSchemaUrl = 'https://developers.cloudflare.com/schema'
-
 if (-not (Test-Path $cfFolder)) {
     Write-Verbose "Creating Cloudflare folder at $cfFolder"
     New-Item -Path $cfFolder -ItemType Directory -Force

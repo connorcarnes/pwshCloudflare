@@ -4,3 +4,8 @@
 
 # region script variables
 # $script:resourcePath = "$PSScriptRoot\Resources"
+$Path = [Environment]::GetFolderPath([Environment+SpecialFolder]::UserProfile)
+$cfFolder = "$Path\.pwshCloudflare"
+$Script:cfConfigPath = "$cfFolder\config.xml"
+$Script:cfBaseApiUrl = 'https://api.cloudflare.com/client/v4'
+$Script:cfApiSchemaUrl = 'https://developers.cloudflare.com/schema'
