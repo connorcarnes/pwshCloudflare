@@ -1,45 +1,63 @@
-﻿#-------------------------------------------------------------------------
+﻿# Set working directory and force remove/import module
 Set-Location -Path $PSScriptRoot
-#-------------------------------------------------------------------------
 $ModuleName = 'pwshCloudflare'
 $PathToManifest = [System.IO.Path]::Combine('..', '..', '..', $ModuleName, "$ModuleName.psd1")
-#-------------------------------------------------------------------------
 if (Get-Module -Name $ModuleName -ErrorAction 'SilentlyContinue') {
-    #if the module is already in memory, remove it
     Remove-Module -Name $ModuleName -Force
 }
 Import-Module $PathToManifest -Force
-#-------------------------------------------------------------------------
 
 InModuleScope 'pwshCloudflare' {
     Describe 'Get-CFAccount Function Tests' -Tag Unit {
         BeforeAll {
-            $WarningPreference = 'SilentlyContinue'
-            $ErrorActionPreference = 'SilentlyContinue'
-            # Mock the dependent cmdlets and variables
+            # Set variables and load mock data required for each test
             $script:cfBaseApiUrl = 'https://api.cloudflare.com/client/v4'
-            $script:cfAccountLookupTable = @{'myAccount' = '12345' }
             $script:cfSession = New-Object Microsoft.PowerShell.Commands.WebRequestSession
-            Mock Invoke-CFRestMethod { return [PSCustomObject]@{ result = [PSCustomObject]@{ AccountName = 'myAcct' } } }
+            $ModuleName = 'pwshCloudflare'
+            $PathToFunction = [System.IO.Path]::Combine('..', '..', '..', $ModuleName, 'Resources', 'Get-MockApiResponse.ps1')
+            . $PathToFunction
+            $mockResponse = Get-MockApiResponse
         }
-        # Context 'Error' {
-        # }
+        Context 'Error' {
+            It 'Should throw if name not found' {
+                Mock Invoke-CFRestMethod {
+                    return [PSCustomObject]@{ result = $null }
+                }
+                { Get-CFAccount -Name 'nonExistingAccount' } | Should -Throw
+            }
+        }
         Context 'Success' {
-            It 'Should get account by name' {
-                $Result = Get-CFAccount -AccountName 'myAcct'
-                $Result.AccountName | Should -Be 'myAcct'
+            It 'Should get resource by name' {
+                Mock Invoke-CFRestMethod {
+                    return @{ result = @($mockResponse.result[0]) }
+                }
+                $Result = Get-CFAccount -Name 'resourceOne'
+                $Result.AccountName | Should -Be 'resourceOne'
+                $Result.Name | Should -Be 'resourceOne'
             }
-            It 'Should get account by id' {
-                $Result = Get-CFAccount -AccountId '12345'
-                $Result.AccountName | Should -Be 'myAcct'
+            It 'Should get resource by id' {
+                Mock Invoke-CFRestMethod {
+                    return @{ result = @($mockResponse.result[0]) }
+                }
+                $Result = Get-CFAccount -Id '1'
+                $Result.AccountId | Should -Be '1'
+                $Result.Id | Should -Be '1'
             }
-            It 'Should get all accounts' {
+            It 'Should get all resources' {
+                Mock Invoke-CFRestMethod {
+                    return $mockResponse
+                }
                 $Result = Get-CFAccount
-                $Result.AccountName | Should -Be 'myAcct'
+                $Result.AccountName | Should -Be @('resourceOne', 'resourceTwo', 'resourceThree')
             }
-            It 'Should return object of type Cloudflare.Account' {
+            It 'Should return correct resource type' {
+                Mock Invoke-CFRestMethod {
+                    return $mockResponse
+                }
                 $Result = Get-CFAccount
-                $result.PSObject.TypeNames[0] | Should -BeExactly 'Cloudflare.Account'
+                foreach ($Item in $Result) {
+                    $Item.PSObject.TypeNames[0] | Should -BeExactly 'Cloudflare.Account'
+                }
             }
         }
     }
