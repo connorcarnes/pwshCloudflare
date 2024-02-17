@@ -2,6 +2,7 @@ Archive
 Artifacts
 cov.xml
 coverage.xml
+**/devCfConfig.xml
 # OS generated files #
 ######################
 .DS_Store
