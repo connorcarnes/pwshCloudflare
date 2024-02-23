@@ -2,7 +2,7 @@
 Set-Location -Path $PSScriptRoot
 #-------------------------------------------------------------------------
 $ModuleName = 'pwshCloudflare'
-$PathToManifest = [System.IO.Path]::Combine('..', '..', '..', $ModuleName, "$ModuleName.psd1")
+$PathToManifest = [System.IO.Path]::Combine('..', '..', '..', '..', $ModuleName, "$ModuleName.psd1")
 #-------------------------------------------------------------------------
 if (Get-Module -Name $ModuleName -ErrorAction 'SilentlyContinue') {
     #if the module is already in memory, remove it
@@ -12,36 +12,35 @@ Import-Module $PathToManifest -Force
 #-------------------------------------------------------------------------
 
 InModuleScope 'pwshCloudflare' {
-    Describe 'Get-CFZoneRecord Function Tests' -Tag Unit {
+    Describe 'Remove-CFZoneRecord Function Tests' -Tag Unit {
         BeforeAll {
             $WarningPreference = 'SilentlyContinue'
             $ErrorActionPreference = 'SilentlyContinue'
-            # Mock the dependent cmdlets and variables
-            Mock Invoke-CFRestMethod { return @{ result = @(@{ RecordId = '12345'; ZoneName = 'example.com' }) } }
             $script:cfBaseApiUrl = 'https://api.cloudflare.com/client/v4'
-            $Script:cfZoneLookupTable = @{'example.com' = '23456' }
+            $Script:cfZoneLookupTable = @{'example.com' = '12345' }
+            Mock Invoke-CFRestMethod { return @{ result = @{'id' = '12345' } } }
             $script:cfSession = New-Object Microsoft.PowerShell.Commands.WebRequestSession
         }
         # Context 'Error' {
         # }
         Context 'Success' {
             It 'Calls Invoke-CFRestMethod with correct parameters for ZoneName' {
-                Get-CFZoneRecord -ZoneName 'example.com'
+                Remove-CFZoneRecord -ZoneName 'example.com' -RecordId '12345'
                 Assert-MockCalled Invoke-CFRestMethod -Exactly 1 -Scope It -ParameterFilter {
-                    $Uri -eq 'https://api.cloudflare.com/client/v4/zones/23456/dns_records' -and
-                    $Method -eq 'GET'
+                    $Uri -eq 'https://api.cloudflare.com/client/v4/zones/12345/dns_records/12345' -and
+                    $Method -eq 'DELETE'
                 }
             }
             It 'Calls Invoke-CFRestMethod with correct parameters for ZoneID' {
-                Get-CFZoneRecord -ZoneID '23456'
+                Remove-CFZoneRecord -ZoneID '12345' -RecordId '12345'
                 Assert-MockCalled Invoke-CFRestMethod -Exactly 1 -Scope It -ParameterFilter {
-                    $Uri -eq 'https://api.cloudflare.com/client/v4/zones/23456/dns_records' -and
-                    $Method -eq 'GET'
+                    $Uri -eq 'https://api.cloudflare.com/client/v4/zones/12345/dns_records/12345' -and
+                    $Method -eq 'DELETE'
                 }
             }
-            It 'Returns objects of type Cloudflare.ZoneRecord' {
-                $result = Get-CFZoneRecord -ZoneName 'example.com'
-                $result.PSObject.TypeNames[0] | Should -BeExactly 'Cloudflare.ZoneRecord'
+            It 'Returns null' {
+                $result = Remove-CFZoneRecord -ZoneName 'example.com' -RecordId '12345'
+                $result | Should -BeExactly $null
             }
         }
         AfterAll {

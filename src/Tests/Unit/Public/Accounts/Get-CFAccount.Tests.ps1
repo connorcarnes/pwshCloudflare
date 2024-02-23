@@ -1,7 +1,7 @@
 ﻿# Set working directory and force remove/import module
 Set-Location -Path $PSScriptRoot
 $ModuleName = 'pwshCloudflare'
-$PathToManifest = [System.IO.Path]::Combine('..', '..', '..', $ModuleName, "$ModuleName.psd1")
+$PathToManifest = [System.IO.Path]::Combine('..', '..', '..', '..', $ModuleName, "$ModuleName.psd1")
 if (Get-Module -Name $ModuleName -ErrorAction 'SilentlyContinue') {
     Remove-Module -Name $ModuleName -Force
 }
@@ -13,7 +13,7 @@ InModuleScope 'pwshCloudflare' {
             # Set variables and load mock data required for each test
             $script:cfBaseApiUrl = 'https://api.cloudflare.com/client/v4'
             $script:cfSession = New-Object Microsoft.PowerShell.Commands.WebRequestSession
-            . $PSScriptRoot/Get-MockApiResponse.ps1
+            . $PSScriptRoot/../Get-MockApiResponse.ps1
             $mockResponse = Get-MockApiResponse
         }
         Context 'Error' {
