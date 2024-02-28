@@ -3,8 +3,8 @@ name: Add API support
 about: Request implementation of specific endpoints from https://developers.cloudflare.com/api/
 title: Add support for [ENDPOINTS]
 labels: enhancement, good first issue
+projects: ["connorcarnes/7"]
 assignees: ''
-
 ---
 
 ### Description

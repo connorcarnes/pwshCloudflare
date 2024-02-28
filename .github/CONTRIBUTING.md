@@ -2,6 +2,14 @@
 
 Thanks for your interest in the **pwshCloudflare Project**! All feedback and contributions are appreciated. Review this document to get started.
 
+## Code of Conduct
+
+This project has a [Code of Conduct](CODE_OF_CONDUCT.md).
+
+## Licensing
+
+See the [LICENSE](LICENSE.txt) file for our project's licensing.
+
 ## Reporting Bugs/Feature Requests
 
 When filing an issue please check [existing open](https://github.com/connorcarnes/pwshCloudflare/issues) and [recently closed](https://github.com/connorcarnes/pwshCloudflare/issues?q=is%3Aissue+is%3Aclosed) issues to make sure somebody else hasn't already reported it. Include as much information as you can. Details like these are incredibly useful:
@@ -31,14 +39,6 @@ To send a pull request:
 GitHub provides additional document on [forking a repository](https://help.github.com/articles/fork-a-repo/) and
 [creating a pull request](https://help.github.com/articles/creating-a-pull-request/).
 
-## Code of Conduct
-
-This project has a [Code of Conduct](CODE_OF_CONDUCT.md).
-
-## Licensing
-
-See the [LICENSE](LICENSE.txt) file for our project's licensing.
-
 ## Development Environment
 
 This document focuses on developing locally using VS Code, Docker and Microsoft's [Development Container specification](https://containers.dev/). Regular local development, [GitHub CodeSpaces](https://docs.github.com/en/codespaces) and other remote development options should work about the same.
@@ -63,4 +63,3 @@ If you'd like to validate your dev env follow these steps:
 - Git add, commit and push your changes to your fork
 - Make a pull request to merge the *dev* branch of your fork to the *dev* branch of the main repo
 - Validate all checks pass
-
